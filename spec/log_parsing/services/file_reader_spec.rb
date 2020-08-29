@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 require './app/log_parsing/services/file_reader'
 require './lib/values/log_entry'
@@ -32,13 +34,13 @@ describe LogParsing::Services::FileReader do
   it 'returns array of log entries' do
     expect(described_class.new('./spec/fixtures/valid_input.txt').call).to(
       eq([
-           %w[/help_page/1 126.318.035.038],
-           %w[/contact 184.123.665.067],
-           %w[/home 184.123.665.067],
-           %w[/about/2 444.701.448.104],
-           %w[/about/2 444.701.448.104],
-           %w[/index 316.433.849.805],
-           %w[/index 802.683.925.780]
+        %w[/help_page/1 126.318.035.038],
+        %w[/contact 184.123.665.067],
+        %w[/home 184.123.665.067],
+        %w[/about/2 444.701.448.104],
+        %w[/about/2 444.701.448.104],
+        %w[/index 316.433.849.805],
+        %w[/index 802.683.925.780]
       ].map { |tuple| Values::LogEntry.new(*tuple) })
     )
   end

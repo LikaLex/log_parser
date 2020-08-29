@@ -1,8 +1,10 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 require './app/log_parsing/endpoints/analyze_log'
 
 describe LogParsing::Endpoints::AnalyzeLog do
-  let (:presenter) { double(present_results: 'table', present_message: 'message') }
+  let(:presenter) { double(present_results: 'table', present_message: 'message') }
 
   it 'displays a message if file name is not passed' do
     expect(presenter).to receive(:present_message).with('File name is missing')

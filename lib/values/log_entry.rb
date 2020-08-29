@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Values
-  class LogEntry < Struct.new(:page, :ip); end
+  LogEntry = Struct.new(:page, :ip)
 end

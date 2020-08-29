@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require './lib/values/log_entry'
 
 module LogParsing
@@ -26,6 +28,7 @@ module LogParsing
         IO.foreach(file_name).map do |line|
           parts = line.split(' ')
           raise 'Invalid file format' unless parts.size == 2
+
           Values::LogEntry.new(*parts)
         end
       end
