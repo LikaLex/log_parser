@@ -10,6 +10,24 @@ module LogParsing
       end
 
       def call
+        {
+          overall: ordered_list(overall_statistics),
+          uniq: ordered_list(uniq_statistics),
+        }
+      end
+
+      private
+
+      def ordered_list(histogram)
+        histogram.sort_by { |page, count| [-count, page] }
+      end
+
+      def overall_statistics
+        log_entries.map(&:page).tally
+      end
+
+      def uniq_statistics
+        log_entries.uniq.map(&:page).tally
       end
     end
   end
