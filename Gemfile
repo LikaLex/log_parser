@@ -1,7 +1,16 @@
 source 'https://rubygems.org'
 
-gem 'pry'
-gem 'rspec'
-gem 'rubocop'
 gem 'terminal-table'
-gem 'simplecov', require: false
+
+group :development do
+  gem 'pry'
+end
+
+group :test do
+  gem 'rspec'
+  gem 'simplecov', require: false
+end
+
+group :development, :test do
+  gem 'rubocop'
+end
