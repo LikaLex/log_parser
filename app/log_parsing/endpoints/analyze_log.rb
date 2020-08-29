@@ -9,6 +9,10 @@ module LogParsing
       end
 
       def call
+        raise 'File name is missing' unless file_name
+        presenter.present_results({})
+      rescue StandardError => e
+        presenter.present_message(e.message)
       end
     end
   end
