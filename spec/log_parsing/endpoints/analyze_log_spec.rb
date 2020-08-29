@@ -4,7 +4,7 @@ require 'spec_helper'
 require './app/log_parsing/endpoints/analyze_log'
 
 describe LogParsing::Endpoints::AnalyzeLog do
-  let(:presenter) { double(present_results: 'table', present_message: 'message') }
+  let(:presenter) { double(present_statistics: 'table', present_message: 'message') }
 
   it 'displays a message if file name is not passed' do
     expect(presenter).to receive(:present_message).with('File name is missing')
@@ -12,20 +12,17 @@ describe LogParsing::Endpoints::AnalyzeLog do
   end
 
   it 'displays a message if file content has wrong format' do
-    pending('not implemented')
     expect(presenter).to receive(:present_message).with('Invalid file format')
     described_class.new('spec/fixtures/invalid_input.txt', presenter).call
   end
 
   it 'displays a message if empty file is passed' do
-    pending('not implemented')
     expect(presenter).to receive(:present_message).with('File is empty')
     described_class.new('spec/fixtures/empty_input.txt', presenter).call
   end
 
   it 'returns correct result' do
-    pending('not implemented')
-    expect(presenter).to receive(:present_results).with(
+    expect(presenter).to receive(:present_statistics).with(
       overall: [
         ['/about/2', 2],
         ['/index', 2],
