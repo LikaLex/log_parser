@@ -17,7 +17,7 @@ describe LogParsing::Endpoints::AnalyzeLog do
 
   it 'displays a message if empty file is passed' do
     pending('not implemented')
-    expect(presenter).to receive(:present_message).with('Empty file is passed')
+    expect(presenter).to receive(:present_message).with('File is empty')
     described_class.new('spec/fixtures/empty_input.txt', presenter).call
   end
 
