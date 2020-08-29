@@ -1,6 +1,6 @@
 require 'spec_helper'
 require './app/log_parsing/services/file_reader'
-require './app/lib/values/log_entry'
+require './lib/values/log_entry'
 
 describe LogParsing::Services::FileReader do
   it 'raises exception if file name is missing' do
@@ -12,28 +12,34 @@ describe LogParsing::Services::FileReader do
   end
 
   it 'raises exception if file does not exist' do
-    expect { described_class.new('fixtures/nonexistent').call }.to raise_exception('File does not exists')
+    expect do
+      described_class.new('./spec/fixtures/nonexistent').call
+    end.to raise_exception(Errno::ENOENT)
   end
 
   it 'raises exception if file has incorrect format' do
-    expect { described_class.new('spec/fixtures/nonexistent').call }.to raise_exception('Invalid file format')
+    expect do
+      described_class.new('./spec/fixtures/invalid_input_structure.txt').call
+    end.to raise_exception('Invalid file format')
   end
 
   it 'raises exception if file is empty' do
     expect do
-      described_class.new('spec/fixtures/empty_input.txt').call
+      described_class.new('./spec/fixtures/empty_input.txt').call
     end.to raise_exception('File is empty')
   end
 
   it 'returns array of log entries' do
-    expect(described_class.new('spec/fixtures/valid_input.txt').call).to(
+    expect(described_class.new('./spec/fixtures/valid_input.txt').call).to(
       eq([
-         ['/about/2', 2],
-         ['/index', 2],
-         ['/contact', 1],
-         ['/help_page/1', 1],
-         ['/home', 1]
-      ].map { |tuple| LogEntry.new(*tuple) })
+           %w[/help_page/1 126.318.035.038],
+           %w[/contact 184.123.665.067],
+           %w[/home 184.123.665.067],
+           %w[/about/2 444.701.448.104],
+           %w[/about/2 444.701.448.104],
+           %w[/index 316.433.849.805],
+           %w[/index 802.683.925.780]
+      ].map { |tuple| Values::LogEntry.new(*tuple) })
     )
   end
 end
