@@ -2,15 +2,22 @@
 
 require 'spec_helper'
 require './app/log_parsing/services/file_reader'
+require './app/log_parsing/errors/missing_argument_error'
+require './app/log_parsing/errors/invalid_format_error'
+require './app/log_parsing/errors/empty_file_error'
 require './lib/values/log_entry'
 
 describe LogParsing::Services::FileReader do
   it 'raises exception if file name is missing' do
-    expect { described_class.new(nil).call }.to raise_exception('File name is missing')
+    expect { described_class.new(nil).call }.to(
+      raise_exception(LogParsing::Errors::MissingArgumentError, 'File name is missing')
+    )
   end
 
   it 'raises exception if file name is blank' do
-    expect { described_class.new('').call }.to raise_exception('File name is missing')
+    expect { described_class.new('').call }.to(
+      raise_exception(LogParsing::Errors::MissingArgumentError, 'File name is missing')
+    )
   end
 
   it 'raises exception if file does not exist' do
@@ -22,13 +29,13 @@ describe LogParsing::Services::FileReader do
   it 'raises exception if file has incorrect format' do
     expect do
       described_class.new('./spec/fixtures/invalid_input_structure.txt').call
-    end.to raise_exception('Invalid file format')
+    end.to raise_exception(LogParsing::Errors::InvalidFormat, 'Invalid file format')
   end
 
   it 'raises exception if file is empty' do
     expect do
       described_class.new('./spec/fixtures/empty_input.txt').call
-    end.to raise_exception('File is empty')
+    end.to raise_exception(LogParsing::Errors::EmptyFileError, 'File is empty')
   end
 
   it 'returns array of log entries' do

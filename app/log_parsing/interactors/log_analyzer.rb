@@ -10,8 +10,8 @@ module LogParsing
       end
 
       def call
-        entries = LogParsing::Services::FileReader.new(file_name).call
-        LogParsing::Services::LogAnalyzer.new(entries).call
+        entries = Services::FileReader.new(file_name).call
+        Services::LogAnalyzer.new(entries).call
       end
 
       private

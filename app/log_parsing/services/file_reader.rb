@@ -1,6 +1,9 @@
 # frozen_string_literal: true
 
 require './lib/values/log_entry'
+require './app/log_parsing/errors/empty_file_error'
+require './app/log_parsing/errors/missing_argument_error'
+require './app/log_parsing/errors/invalid_format_error'
 
 module LogParsing
   module Services
@@ -17,15 +20,15 @@ module LogParsing
       private
 
       def validate_file
-        raise 'File name is missing' unless file_name
-        raise 'File name is missing' if file_name.empty?
-        raise 'File is empty' if File.size(file_name).zero?
+        raise Errors::MissingArgumentError unless file_name
+        raise Errors::MissingArgumentError if file_name.empty?
+        raise Errors::EmptyFileError if File.size(file_name).zero?
       end
 
       def parse_file
         IO.foreach(file_name).map do |line|
           parts = line.split(' ')
-          raise 'Invalid file format' unless parts.size == 2
+          raise Errors::InvalidFormat unless parts.size == 2
 
           Values::LogEntry.new(*parts)
         end

@@ -7,13 +7,13 @@ require './app/log_parsing/presenters/terminal'
 module LogParsing
   module Endpoints
     class AnalyzeLog
-      def initialize(file_name, presenter = LogParsing::Presenters::Terminal.new)
+      def initialize(file_name, presenter = Presenters::Terminal.new)
         @file_name = file_name
         @presenter = presenter
       end
 
       def call
-        statistics = LogParsing::Interactors::LogAnalyzer.new(file_name).call
+        statistics = Interactors::LogAnalyzer.new(file_name).call
         presenter.present_statistics(statistics)
       rescue StandardError => e
         presenter.present_message(e.message)
