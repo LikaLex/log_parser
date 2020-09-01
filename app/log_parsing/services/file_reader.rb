@@ -5,8 +5,6 @@ require './lib/values/log_entry'
 module LogParsing
   module Services
     class FileReader
-      attr_reader :file_name
-
       def initialize(file_name)
         @file_name = file_name
       end
@@ -32,6 +30,10 @@ module LogParsing
           Values::LogEntry.new(*parts)
         end
       end
+
+      private
+
+      attr_reader :file_name
     end
   end
 end

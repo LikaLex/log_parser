@@ -7,8 +7,6 @@ require './app/log_parsing/presenters/terminal'
 module LogParsing
   module Endpoints
     class AnalyzeLog
-      attr_reader :file_name, :presenter
-
       def initialize(file_name, presenter = LogParsing::Presenters::Terminal.new)
         @file_name = file_name
         @presenter = presenter
@@ -20,6 +18,10 @@ module LogParsing
       rescue StandardError => e
         presenter.present_message(e.message)
       end
+
+      private
+
+      attr_reader :file_name, :presenter
     end
   end
 end

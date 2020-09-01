@@ -17,6 +17,7 @@ module LogParsing
       end
 
       private
+      attr_reader :log_entries
 
       def ordered_list(histogram)
         histogram.sort_by { |page, count| [-count, page] }
