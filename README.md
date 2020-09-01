@@ -45,7 +45,7 @@ P.S. Value object for log entries is added just to add even more DDD. For consis
 ##Run script:
 
 
-    ruby parser.rb webserver.log
+    ruby log_analyzer.rb webserver.log
 
 ##Example of result:
 

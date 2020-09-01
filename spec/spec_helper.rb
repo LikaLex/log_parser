@@ -15,6 +15,8 @@
 #
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 
+ENV['GROUP'] = 'test'
+
 require './boot'
 require 'simplecov'
 

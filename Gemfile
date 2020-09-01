@@ -5,7 +5,7 @@ source 'https://rubygems.org'
 gem 'terminal-table'
 
 group :development do
-  gem 'pry'
+  gem 'rubocop'
 end
 
 group :test do
@@ -14,5 +14,5 @@ group :test do
 end
 
 group :development, :test do
-  gem 'rubocop'
+  gem 'pry'
 end
