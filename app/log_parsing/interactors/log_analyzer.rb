@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 require './app/log_parsing/services/file_reader'
 require './app/log_parsing/services/log_analyzer'
 

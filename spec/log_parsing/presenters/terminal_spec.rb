@@ -22,7 +22,7 @@ describe LogParsing::Presenters::Terminal do
         uniq: [
           ['/index', 2],
           ['/about/2', 1],
-          ['/help_page/1', 1],
+          ['/help_page/1', 1]
         ]
       }
     end
@@ -31,11 +31,13 @@ describe LogParsing::Presenters::Terminal do
       expect { described_class.new.present_statistics(input) }.to(
         output(
           a_string_including(
-            Terminal::Table.new(rows: [
-              ['/index', 2],
-              ['/contact', 1],
-              ['/home', 1]
-            ]).to_s
+            Terminal::Table.new(
+              rows: [
+                ['/index', 2],
+                ['/contact', 1],
+                ['/home', 1]
+              ]
+            ).to_s
           )
         ).to_stdout
       )
@@ -45,11 +47,13 @@ describe LogParsing::Presenters::Terminal do
       expect { described_class.new.present_statistics(input) }.to(
         output(
           a_string_including(
-            Terminal::Table.new(rows: [
-              ['/index', 2],
-              ['/about/2', 1],
-              ['/help_page/1', 1],
-            ]).to_s
+            Terminal::Table.new(
+              rows: [
+                ['/index', 2],
+                ['/about/2', 1],
+                ['/help_page/1', 1]
+              ]
+            ).to_s
           )
         ).to_stdout
       )

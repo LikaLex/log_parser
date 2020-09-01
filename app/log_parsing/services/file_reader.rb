@@ -19,6 +19,8 @@ module LogParsing
 
       private
 
+      attr_reader :file_name
+
       def validate_file
         raise Errors::MissingArgumentError unless file_name
         raise Errors::MissingArgumentError if file_name.empty?
@@ -33,10 +35,6 @@ module LogParsing
           Values::LogEntry.new(*parts)
         end
       end
-
-      private
-
-      attr_reader :file_name
     end
   end
 end
