@@ -5,9 +5,11 @@ require './app/log_parsing/services/log_analyzer'
 require './lib/values/log_entry'
 
 describe LogParsing::Services::LogAnalyzer do
+  subject { described_class }
+
   it 'builds result in expected format' do
     expect(
-      described_class.new(
+      subject.new(
         [
           %w[/help_page/1 126.318.035.038],
           %w[/contact 184.123.665.067],

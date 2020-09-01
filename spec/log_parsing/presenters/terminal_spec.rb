@@ -4,10 +4,12 @@ require 'spec_helper'
 require './app/log_parsing/presenters/terminal'
 
 describe LogParsing::Presenters::Terminal do
+  subject { described_class.new }
+
   describe '#present_message' do
     it 'prints message to console' do
       message = 'some message'
-      expect { described_class.new.present_message(message) }.to output(a_string_including(message)).to_stdout
+      expect { subject.present_message(message) }.to output(a_string_including(message)).to_stdout
     end
   end
 
@@ -28,7 +30,7 @@ describe LogParsing::Presenters::Terminal do
     end
 
     it 'prints overall statistics table to console' do
-      expect { described_class.new.present_statistics(input) }.to(
+      expect { subject.present_statistics(input) }.to(
         output(
           a_string_including(
             Terminal::Table.new(

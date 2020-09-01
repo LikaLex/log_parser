@@ -5,20 +5,21 @@ require './app/log_parsing/endpoints/analyze_log'
 
 describe LogParsing::Endpoints::AnalyzeLog do
   let(:presenter) { double(present_statistics: 'table', present_message: 'message') }
+  subject { described_class }
 
   it 'displays a message if file name is not passed' do
     expect(presenter).to receive(:present_message).with('File name is missing')
-    described_class.new(nil, presenter).call
+    subject.new(nil, presenter).call
   end
 
   it 'displays a message if file content has wrong format' do
     expect(presenter).to receive(:present_message).with('Invalid file format')
-    described_class.new('spec/fixtures/invalid_input.txt', presenter).call
+    subject.new('spec/fixtures/invalid_input.txt', presenter).call
   end
 
   it 'displays a message if empty file is passed' do
     expect(presenter).to receive(:present_message).with('File is empty')
-    described_class.new('spec/fixtures/empty_input.txt', presenter).call
+    subject.new('spec/fixtures/empty_input.txt', presenter).call
   end
 
   it 'returns correct result' do
@@ -38,6 +39,6 @@ describe LogParsing::Endpoints::AnalyzeLog do
         ['/home', 1]
       ]
     )
-    described_class.new('spec/fixtures/valid_input.txt', presenter).call
+    subject.new('spec/fixtures/valid_input.txt', presenter).call
   end
 end
