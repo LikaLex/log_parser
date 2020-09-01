@@ -71,3 +71,5 @@ P.S. Value object for log entries is added just to add even more DDD. For consis
     | /about       | 21 |
     +--------------+----+  
 
+## Improvements:
+Merge both tables into one and add arguments for setting sort column and direction
