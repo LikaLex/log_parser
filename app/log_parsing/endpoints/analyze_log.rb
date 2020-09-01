@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require './boot.rb'
-require './app/log_parsing/interactors/parser'
+require './app/log_parsing/interactors/log_analyzer'
 require './app/log_parsing/presenters/terminal'
 
 module LogParsing
@@ -13,7 +13,7 @@ module LogParsing
       end
 
       def call
-        statistics = LogParsing::Interactors::Parser.new(file_name).call
+        statistics = LogParsing::Interactors::LogAnalyzer.new(file_name).call
         presenter.present_statistics(statistics)
       rescue StandardError => e
         presenter.present_message(e.message)

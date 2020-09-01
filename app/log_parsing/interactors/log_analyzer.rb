@@ -4,7 +4,7 @@ require './app/log_parsing/services/log_analyzer'
 
 module LogParsing
   module Interactors
-    class Parser
+    class LogAnalyzer
       def initialize(file_name)
         @file_name = file_name
       end
