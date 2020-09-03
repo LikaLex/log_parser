@@ -1,6 +1,6 @@
 # Log Parser
 
-##Task description:
+## Task description:
 
     Write a ruby script that:
     
@@ -14,7 +14,7 @@
     e.g.:
     /about/2 8 unique views /index 5 unique views etc...
 
-##Algorithm:
+## Algorithm:
 1. Read the file line-by-line;
 2. Validate format;
 3. Build a histogram based on the page names. It gives us the number of visits;  
@@ -22,32 +22,30 @@
 5. From the list from the previous step, build a histogram based on the page names. It gives us the number of unique visits;
 6. Order both histograms by number of visits and page names;
 7. Present both lists;
-8. ???????????????
-9. PROFIT!!!
 
-##Programming approach:
+## Programming approach:
 - DDD
 - TDD
 - SOLID
 
 P.S. Value object for log entries is added just to add even more DDD. For consistency, I would also add a class for parsed log entries.
 
-##Installation:
+## Installation:
  
  
     bundle install
 
-##Run specs: 
+## Run specs:
 
 
     rspec
 
-##Run script:
+## Run script:
 
 
     ruby log_analyzer.rb webserver.log
 
-##Example of result:
+## Example of result:
 
 
     Number of visitors:
